@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { useLanguage } from "../../../context/LanguageContext"; 
+
+import { useLanguage } from "../../../context/LanguageContext";
+
 import {
   ShoppingCart,
   Menu,
@@ -18,37 +20,81 @@ import {
 
 export default function Navbar() {
   const pathname = usePathname();
+
   const { lang, toggleLanguage, t } = useLanguage();
 
   const [mobileOpen, setMobileOpen] = useState(false);
+
   const [darkMode, setDarkMode] = useState(false);
 
   const navLinks = [
-    { name: t.home, path: "/" },
-    { name: t.categories, path: "/categories" },
-    { name: t.services, path: "/services" },
-    // { name: "Blogs", path: "/blogs" },
-    { name: t.video, path: "/video" },
-    { name: t.brands, path: "/brands" },
-    { name: t.aboutUs, path: "/about" },
-    { name: t.contactUs, path: "/contact" },
+    {
+      name: t.home,
+      path: "/",
+    },
+
+    {
+      name: t.categories,
+      path: "/categories",
+    },
+
+    {
+      name: t.services,
+      path: "/services",
+    },
+
+    {
+      name: t.video,
+      path: "/video",
+    },
+
+    {
+      name: t.brands,
+      path: "/brands",
+    },
+
+    {
+      name: t.aboutUs,
+      path: "/about",
+    },
+
+    {
+      name: t.contactUs,
+      path: "/contact",
+    },
   ];
 
   return (
     <header className="w-full border-b bg-[#eef6ff]">
-      <nav className="bg-white shadow-sm border-b">
-        <div className="container mx-auto flex items-center justify-between px-4 py-2 gap-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0">
-            <div className="bg-[#14b8a6]/10 p-2 rounded-full">
-              <Pill className="text-[#14b8a6]" size={20} />
+
+      <nav className="border-b bg-white shadow-sm">
+
+        <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-2">
+
+          {/* LOGO */}
+
+          <Link
+            href="/"
+            className="flex shrink-0 items-center gap-2"
+          >
+            <div className="rounded-full bg-[#14b8a6]/10 p-2">
+              <Pill
+                className="text-[#14b8a6]"
+                size={20}
+              />
             </div>
 
             <div className="leading-tight">
-              <h1 className="text-2xl font-bold">
-                <span className="text-[#14b8a6]">Pharma</span>
 
-                <span className="text-[#115e59]">Care</span>
+              <h1 className="text-2xl font-bold">
+
+                <span className="text-[#14b8a6]">
+                  Pharma
+                </span>
+
+                <span className="text-[#115e59]">
+                  Care
+                </span>
               </h1>
 
               <p className="text-[11px] text-gray-500">
@@ -57,15 +103,18 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Search */}
-          <div className="hidden md:flex flex-1 max-w-[420px] items-center border border-gray-200 rounded-full px-3 py-1">
+          {/* SEARCH */}
+
+          <div className="hidden md:flex flex-1 max-w-[420px] items-center rounded-full border border-gray-200 px-3 py-1">
+
             <input
               type="text"
               placeholder={t.searchPlaceholder}
-              className="w-full px-3 py-1 outline-none text-sm text-gray-700 bg-transparent"
+              className="w-full bg-transparent px-3 py-1 text-sm text-gray-700 outline-none"
             />
 
-            <button className="w-9 h-9 rounded-full flex items-center justify-center transition">
+            <button className="flex h-9 w-9 items-center justify-center rounded-full transition">
+
               <Search
                 size={18}
                 className="text-[#14b8a6] hover:text-[#0f9b8e]"
@@ -73,28 +122,37 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Desktop Links */}
+          {/* DESKTOP LINKS */}
+
           <div className="hidden lg:flex items-center gap-6 font-medium">
+
             {navLinks.map((link) => (
-              <div key={link.path} className="relative group">
+              <div
+                key={link.path}
+                className="group relative"
+              >
                 <Link
                   href={link.path}
-                  className={`flex items-center gap-1 transition text-[13px] ${
+                  className={`flex items-center gap-1 text-[13px] transition ${
                     pathname === link.path
-                      ? "text-[#14b8a6] font-semibold"
+                      ? "font-semibold text-[#14b8a6]"
                       : "text-gray-700 hover:text-[#14b8a6]"
                   }`}
                 >
                   {link.name}
 
-                  {(link.name === t.categories || link.name === t.services) && (
+                  {(link.name === t.categories ||
+                    link.name === t.services) && (
                     <ChevronDown size={16} />
                   )}
                 </Link>
 
-                {/* Dropdown */}
-                {(link.name === t.categories || link.name === t.services) && (
-                  <div className="absolute top-8 left-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 bg-white shadow-lg border rounded-xl min-w-[190px] py-2 z-50">
+                {/* DROPDOWN */}
+
+                {(link.name === t.categories ||
+                  link.name === t.services) && (
+                  <div className="invisible absolute left-0 top-8 z-50 min-w-[190px] rounded-xl border bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:opacity-100">
+
                     <Link
                       href="#"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#14b8a6]/10 hover:text-[#14b8a6]"
@@ -121,83 +179,125 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right Side */}
-          <div className="flex items-center gap-3 shrink-0">
-            {/* Language */}
+          {/* RIGHT SIDE */}
+
+          <div className="flex shrink-0 items-center gap-3">
+
+            {/* LANGUAGE */}
+
             <button
               onClick={toggleLanguage}
-              className="hidden md:flex items-center gap-1.5 border border-gray-200 px-2.5 py-1.5 rounded-full text-xs text-gray-700 hover:bg-gray-50 transition"
+              className="hidden md:flex items-center gap-1.5 rounded-full border border-gray-200 px-2.5 py-1.5 text-xs text-gray-700 transition hover:bg-gray-50"
             >
-              <Languages size={15} className="text-[#14b8a6]" />
+              <Languages
+                size={15}
+                className="text-[#14b8a6]"
+              />
 
               {lang.toUpperCase()}
             </button>
 
-            {/* Dark / Light */}
+            {/* DARK MODE */}
+
             <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="border border-gray-200 hover:bg-gray-100 transition p-1.5 rounded-full"
+              onClick={() =>
+                setDarkMode(!darkMode)
+              }
+              className="rounded-full border border-gray-200 p-1.5 transition hover:bg-gray-100"
             >
               {darkMode ? (
-                <Sun size={16} className="text-[#14b8a6]" />
+                <Sun
+                  size={16}
+                  className="text-[#14b8a6]"
+                />
               ) : (
-                <Moon size={16} className="text-[#14b8a6]" />
+                <Moon
+                  size={16}
+                  className="text-[#14b8a6]"
+                />
               )}
             </button>
 
-            {/* Cart */}
-            <button className="relative">
-              <ShoppingCart size={22} className="text-[#14b8a6]" />
+            {/* CART */}
 
-              <span className="absolute -top-2 -right-2 bg-[#14b8a6] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+            <button className="relative">
+
+              <ShoppingCart
+                size={22}
+                className="text-[#14b8a6]"
+              />
+
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#14b8a6] text-[10px] text-white">
                 2
               </span>
             </button>
 
-            {/* Sign In */}
-            <Link href="/signup" className="hidden md:flex bg-[#14b8a6] text-white hover:bg-[#0f9b8e] px-5 py-2 rounded-full transition font-semibold text-sm">
+            {/* SIGN IN */}
+
+            <Link
+              href="/signup"
+              className="hidden rounded-full bg-[#14b8a6] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0f9b8e] md:flex"
+            >
               {t.signIn}
             </Link>
 
-            {/* Mobile Menu */}
+            {/* MOBILE MENU */}
+
             <button
               className="lg:hidden"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() =>
+                setMobileOpen(!mobileOpen)
+              }
             >
               {mobileOpen ? (
-                <X size={24} className="text-[#14b8a6]" />
+                <X
+                  size={24}
+                  className="text-[#14b8a6]"
+                />
               ) : (
-                <Menu size={24} className="text-[#14b8a6]" />
+                <Menu
+                  size={24}
+                  className="text-[#14b8a6]"
+                />
               )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
+
         {mobileOpen && (
-          <div className="lg:hidden bg-white border-t px-4 py-5 space-y-5">
-            {/* Mobile Search */}
-            <div className="flex items-center border border-gray-200 rounded-full px-3 py-1">
+          <div className="space-y-5 border-t bg-white px-4 py-5 lg:hidden">
+
+            {/* MOBILE SEARCH */}
+
+            <div className="flex items-center rounded-full border border-gray-200 px-3 py-1">
+
               <input
                 type="text"
                 placeholder={t.searchPlaceholder}
-                className="w-full px-3 py-2 outline-none text-sm text-gray-700"
+                className="w-full px-3 py-2 text-sm text-gray-700 outline-none"
               />
 
-              <button className="w-9 h-9 flex items-center justify-center">
-                <Search size={18} className="text-[#14b8a6]" />
+              <button className="flex h-9 w-9 items-center justify-center">
+                <Search
+                  size={18}
+                  className="text-[#14b8a6]"
+                />
               </button>
             </div>
 
-            {/* Mobile Links */}
+            {/* MOBILE LINKS */}
+
             <div className="flex flex-col gap-4">
+
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   href={link.path}
                   className={`text-[15px] ${
                     pathname === link.path
-                      ? "text-[#14b8a6] font-semibold"
+                      ? "font-semibold text-[#14b8a6]"
                       : "text-gray-700"
                   }`}
                 >
@@ -206,18 +306,26 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Mobile Buttons */}
+            {/* MOBILE BUTTONS */}
+
             <div className="flex items-center gap-3">
+
               <button
                 onClick={toggleLanguage}
-                className="flex items-center justify-center gap-2 border border-gray-200 px-4 py-2 rounded-full text-sm text-gray-700 w-full"
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm text-gray-700"
               >
-                <Languages size={16} className="text-[#14b8a6]" />
+                <Languages
+                  size={16}
+                  className="text-[#14b8a6]"
+                />
 
                 {lang.toUpperCase()}
               </button>
 
-              <Link href="/signin" className="w-full bg-[#14b8a6] text-white py-2 rounded-full font-semibold text-sm text-center">
+              <Link
+                href="/signin"
+                className="w-full rounded-full bg-[#14b8a6] py-2 text-center text-sm font-semibold text-white"
+              >
                 {t.signIn}
               </Link>
             </div>
