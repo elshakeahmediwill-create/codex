@@ -44,13 +44,13 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, -12, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="absolute left-10 top-2"
+          className="absolute left-8 top-2"
         >
           <Image
             src="/images/Footerpills.png"
             alt="pill"
-            width={80}
-            height={80}
+            width={120}
+            height={120}
           />
         </motion.div>
 
@@ -62,15 +62,15 @@ export default function Hero() {
           <Image
             src="/images/jar.webp"
             alt="bottle"
-            width={150}
-            height={150}
+            width={170}
+            height={170}
           />
         </motion.div>
 
         <motion.div
           animate={{ y: [0, -10, 0], rotate: [0, -12, 0] }}
           transition={{ duration: 6, repeat: Infinity }}
-          className="absolute right-10 top-12"
+          className="absolute right-5 top-12"
         >
           <Image
             src="/images/motiontwo.png"
@@ -82,7 +82,7 @@ export default function Hero() {
 
         {/* MAIN CONTENT */}
 
-        <div className="relative z-10 grid min-h-[540px] items-center lg:grid-cols-2">
+        <div className="relative z-10 grid min-h-[540px] items-center lg:grid-cols-2 ps-18">
 
           {/* LEFT SIDE */}
 

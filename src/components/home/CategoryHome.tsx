@@ -85,24 +85,19 @@ export default function CategoriesHome() {
 
   return (
     <div>
-
       {/* HEADER */}
 
       <div className="mb-3 flex items-center justify-between">
-
         <h2 className="flex items-center gap-2 text-2xl font-bold">
-
           <span className="h-6 w-1 rounded-full bg-[#14b8a6]"></span>
 
           {t.shopBy}
 
-          <span className="text-[#14b8a6]">
-            {t.category}
-          </span>
+          <span className="text-[#14b8a6]">{t.category}</span>
         </h2>
 
         <Link
-          href="/shop"
+          href="/categories"
           className="text-sm font-medium text-[#14b8a6] hover:underline"
         >
           {t.viewAll} →
@@ -112,17 +107,14 @@ export default function CategoriesHome() {
       {/* SCROLL ROW */}
 
       <div className="scrollbar-hide flex gap-6 overflow-x-auto pb-2">
-
         {pharmacyCategories.map((cat) => (
           <div
             key={cat._id}
             className="group min-w-[90px] flex-shrink-0 cursor-pointer text-center"
           >
-
             {/* IMAGE */}
 
             <div className="relative mx-auto mb-2 h-20 w-20 overflow-hidden rounded-full border bg-gray-50 transition duration-300 group-hover:scale-105 group-hover:shadow-lg">
-
               <Image
                 src={cat.image}
                 alt={cat.name}
