@@ -1,25 +1,14 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-} from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const LanguageContext = createContext<any>(null);
 
-export function LanguageProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [lang, setLang] = useState<"ar" | "en">("ar");
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [lang, setLang] = useState<"ar" | "en">("en");
 
   useEffect(() => {
-    const savedLang = localStorage.getItem(
-      "site_lang"
-    ) as "ar" | "en";
+    const savedLang = localStorage.getItem("site_lang") as "ar" | "en";
 
     if (savedLang) {
       setLang(savedLang);
@@ -27,14 +16,13 @@ export function LanguageProvider({
   }, []);
 
   useEffect(() => {
-    document.documentElement.dir =
-      lang === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = lang === "en" ?"ltr": "rtl" ;
 
     document.documentElement.lang = lang;
   }, [lang]);
 
   const toggleLanguage = () => {
-    const nextLang = lang === "ar" ? "en" : "ar";
+    const nextLang = lang === "en" ?"ar": "en" ;
 
     setLang(nextLang);
 
@@ -126,8 +114,7 @@ export function LanguageProvider({
 
       stayUpdated: "ابق على اطلاع",
 
-      newsletterDesc:
-        "اشترك للحصول على عروض حصرية وتحديثات.",
+      newsletterDesc: "اشترك للحصول على عروض حصرية وتحديثات.",
 
       emailPlaceholder: "أدخل بريدك الإلكتروني",
 
@@ -136,13 +123,35 @@ export function LanguageProvider({
       expertSupport: "دعم فني متخصص",
       securePayments: "دفع آمن",
 
-      copyright:
-        "© 2026 فارما كير. جميع الحقوق محفوظة.",
+      copyright: "© 2026 فارما كير. جميع الحقوق محفوظة.",
 
       tagline: "صحتك، أولويتنا.",
       popular: "الأكثر مبيعًا",
 
-addToCart: "أضف إلى السلة",
+      addToCart: "أضف إلى السلة",
+      offer1Badge: "عرض خاص",
+      offer1Title: "خصم 50%",
+      offer1Subtitle: "الفيتامينات والمكملات الغذائية",
+      offer1Description:
+        "احصل على أفضل منتجات الرعاية الصحية بأسعار مخفضة لفترة محدودة.",
+
+      offer2Badge: "خصم مميز",
+      offer2Title: "اشتري 1 واحصل على 1",
+      offer2Subtitle: "مجموعة العناية بالبشرة",
+      offer2Description:
+        "استمتع بعروض مذهلة على منتجات العناية بالبشرة واحصل على بشرة صحية ونضرة.",
+
+      offer3Badge: "عروض نهاية الأسبوع",
+      offer3Title: "وفر حتى 40%",
+      offer3Subtitle: "منتجات العناية بالشعر",
+      offer3Description:
+        "منتجات عناية بالشعر بجودة عالية وخصومات حصرية لفترة محدودة.",
+
+      save: "وفر",
+      offer: "عرض",
+      shopOffer: "تسوق العرض",
+      viewDetails: "عرض التفاصيل",
+      trustedCustomers: "موثوق من أكثر من 10,000 عميل",
     },
 
     en: {
@@ -229,8 +238,7 @@ addToCart: "أضف إلى السلة",
 
       stayUpdated: "Stay Updated",
 
-      newsletterDesc:
-        "Subscribe to get exclusive offers and updates.",
+      newsletterDesc: "Subscribe to get exclusive offers and updates.",
 
       emailPlaceholder: "Enter your email",
 
@@ -239,13 +247,35 @@ addToCart: "أضف إلى السلة",
       expertSupport: "Expert Support",
       securePayments: "Secure Payments",
 
-      copyright:
-        "© 2026 PharmaCare. All rights reserved.",
+      copyright: "© 2026 PharmaCare. All rights reserved.",
 
       tagline: "Your health, our priority.",
       popular: "Popular",
 
-addToCart: "Add To Cart",
+      addToCart: "Add To Cart",
+      offer1Badge: "Limited Offer",
+      offer1Title: "50% OFF",
+      offer1Subtitle: "Vitamins & Supplements",
+      offer1Description:
+        "Get the best healthcare products at exclusive discounted prices for a limited time.",
+
+      offer2Badge: "Special Discount",
+      offer2Title: "Buy 1 Get 1",
+      offer2Subtitle: "Skin Care Collection",
+      offer2Description:
+        "Enjoy amazing skincare offers and keep your skin healthy and refreshed.",
+
+      offer3Badge: "Weekend Deals",
+      offer3Title: "Save 40%",
+      offer3Subtitle: "Hair Care Essentials",
+      offer3Description:
+        "Premium hair care products with exclusive discounts available this week only.",
+
+      save: "SAVE",
+      offer: "Offer",
+      shopOffer: "Shop Offer",
+      viewDetails: "View Details",
+      trustedCustomers: "Trusted by 10,000+ customers",
     },
   };
 
@@ -262,5 +292,4 @@ addToCart: "Add To Cart",
   );
 }
 
-export const useLanguage = () =>
-  useContext(LanguageContext);
+export const useLanguage = () => useContext(LanguageContext);

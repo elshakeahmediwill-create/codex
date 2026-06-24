@@ -138,3 +138,30 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+
+
+
+
+
+
+
+
+.hero-swiper .swiper-pagination {
+  bottom: 14px !important;
+}
+
+.hero-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: #14b8a6;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.hero-swiper .swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 999px;
+  background: #14b8a6;
+  opacity: 1;
+}
